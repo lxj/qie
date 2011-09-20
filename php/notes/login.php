@@ -189,6 +189,12 @@ input{visibility:visible}
             }
         });
     };
+})('notes');
+
+(function(S){
+	/*
+	 *登陆模块
+	 **/
     S.login=function(submit,user_name,user_password){
         submit.className='but-loading';
         if(!submit.ajax){
@@ -196,14 +202,15 @@ input{visibility:visible}
                     function(date){
                         var d=S.parseJson(date);
                         if(d.user && d.user==='error'){
-                            alert('用户名不存在')
+                            alert('用户名不存在');
+							submit.className='but';
                         }
                         if(d.password && d.password==='correct'){
                             location.href='index.php';
                         }else{
                             d.user==='correct' && alert('密码错误');
+							submit.className='but';
                         }
-                        submit.className='but';
                         submit.ajax=0;
                     },
                     'login.php?act=login',
@@ -230,7 +237,7 @@ input{visibility:visible}
         S.login(submit,user_name,user_password);
         return false
     })
-})('notes');
+})(notes);
 </script>
 
 </body>

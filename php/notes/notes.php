@@ -68,6 +68,20 @@ class notes
 			}
 			return $date;
    }
+   function cat_list(){
+	        $sql = "select * from note_cats order by cat_sort ASC" ;
+			$date= array();
+			$AJ_RET_SUCC=1096;
+			$query_result = mysql_query($sql) or $AJ_RET_SUCC=1000;
+			while($row = mysql_fetch_assoc($query_result)){
+			 $date[]=$row;
+			}
+			include 'json/response.php';
+			$result = array();
+			$result['cat_count'] = count($date);
+			$result['cat_list'] = $date;
+			echo Response::HTML($AJ_RET_SUCC, $result);
+   }
    function ajax_page(){
 	        $AJ_RET_SUCC=1096;
 	        $page=15;

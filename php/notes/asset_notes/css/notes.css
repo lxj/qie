@@ -1,7 +1,7 @@
 *{margin:0; padding:0}
 ul,li{list-style:none}
 em{font-style:normal}
-body{font:14px/1.5 "宋体";color:#333}
+body{font:14px/1.5 "宋体";color:#333;padding-bottom:15px}
 table {border-collapse:collapse;border-spacing:0;} 
 
 a{color:#2e6fb3;text-decoration:none;outline:none}
@@ -19,11 +19,12 @@ p{padding-bottom:10px}
 
 .crumb{padding-top:20px;font-family:'\5B8B\4F53';}
 
-.notes-content{ border-bottom:2px solid #eee}
+.notes-content{zoom:1}
 	.notes-content ul li{list-style:inside disc;padding-bottom:10px}
 	.notes-content ol li{list-style:inside decimal;padding-bottom:10px}
 
 .notes-list{overflow:hidden;zoom:1;position:relative}
+    .notes-list .notes-content{ border-bottom:2px solid #eee}
     .notes-list .notes-item{position:relative;zoom:1;font:14px/1.5 Tahoma, Geneva, sans-serif;/*border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;border:1px solid #eee*/; vertical-align:top;/*width:49.9%;float:left*/}
     .notes-list .notes-item .notes-content{padding:10px 20px 20px;display:none;}
     .notes-list .lt{cursor:pointer;border-bottom:1px solid #eee;line-height:30px;height:30px;overflow:hidden;position:relative;padding-left:12px}
@@ -45,7 +46,8 @@ p{padding-bottom:10px}
 
 .at-title{font-weight:bold;}
 
-.cat-list{width:100px;position:fixed;top:10px;left:10px;line-height:24px;background:#f8f8f8;-webkit-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);-moz-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);box-shadow:0 0 2px 2px rgba(0,0,0,0.1);border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;text-align:left;font-size:14px;padding:8px 0;;z-index:9999}
+.cat-list-bx{width:100px;position:fixed;top:10px;left:10px;line-height:24px;background:#f8f8f8;-webkit-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);-moz-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);box-shadow:0 0 2px 2px rgba(0,0,0,0.1);border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.cat-list{text-align:left;font-size:14px;padding:8px 0;;z-index:9999}
 	.cat-list .cat-item{padding-left:10px}
 	.cat-list .select{color:#fa8c00;font-weight:bold}
 
