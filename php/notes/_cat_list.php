@@ -19,25 +19,28 @@
 </div>
 <script>
 (function(S){
-	 var cur_cat='首页',select='class="select"';
+	 var cur_cat='首页',select='class="select"',mr=[{"cat_name":"首页","cat_slug":"index"},{"cat_name":"精华","cat_slug":"marrow"}];
 	<?php if($_GET['act']){?>
       cur_cat="<?=$_GET['act'];?>";
 	  select='';
 	<?php }?>
-    S.$('cat-loading').style.display='block';
-	S.Ajax(
-		   function(date){
-			var d=S.parseJson(date),s='',mr=[{"cat_name":"首页","cat_slug":"index"},{"cat_name":"精华","cat_slug":"marrow"}],zzData=mr.concat(d.cat_list),sli;
-
+	function createCatList(catData){
+			var s='',zzData=mr.concat(catData),sli;
 			   for(var i=0,ii=zzData.length;i<ii;i++){
 				  select=cur_cat===zzData[i].cat_name ? 'class="select"' : '';
 				  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+zzData[i].cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+zzData[i].cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+zzData[i].cat_name+'" '+select+'>'+zzData[i].cat_name+'</a></li>'};
 				  s+=(sli[zzData[i].cat_slug] || sli['mr']);
 				  select='';
 			   }
-
-			   S.$('cat-loading').style.display='none';
 			   S.$('cat-list').innerHTML=s;
+	}
+    S.$('cat-loading').style.display='block';
+	S.catData ? createCatList(S.catData) : S.Ajax(
+		   function(date){
+			var d=S.parseJson(date);
+			    S.$('cat-loading').style.display='none';
+			    createCatList(d.cat_list);
+				S.catData=d.cat_list;
 		   },
 		   'cat_list.php',
 		   "get"
