@@ -1,7 +1,7 @@
 <?
 include ('notes.php');
-$date=$newNotes ->index();
-$_GET['act']='首页';
+$date=$newNotes ->marrow();
+$_GET['act']='精华';
 ?>
 <!doctype html> 
 <html> 
@@ -28,7 +28,6 @@ $_GET['act']='首页';
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushSql.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushVb.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushXml.js"></script>
-
 <script type="text/javascript" src="asset_notes/js/note_front.js"></script>
 <link type="text/css" rel="stylesheet" href="asset_notes/js/editor/syntaxhighlighter/styles/shCore.css"/>
 <link type="text/css" rel="stylesheet" href="asset_notes/js/editor/syntaxhighlighter/styles/shThemeDefault2.css"/>
@@ -42,11 +41,11 @@ $_GET['act']='首页';
 <body>
 <div id="contenter">
     <div class="con-rt"><span style="margin-right:15px"><?php echo $_COOKIE['user_name'];?></span><?php if(!$_GET['admin']){ ?><a href="index.php?admin=1" class="admin">管理</a><?php }?><a href="logout.php" style="margin-left:15px">退出</a></div>
-
-    <?php include('_FCKeditor.php');?>
+	 
+	 <?php include('_FCKeditor.php');?>
     <?php include('_cat_list.php');?>
 
-    <div style="padding-top:20px">总共有<span id="pagegeshu"><?php echo count($date); ?></span>个笔记</div>
+    <div class="crumb"><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<?=$_GET['act'];?>(<span id="pagegeshu"><?php echo count($date); ?></span>)</div>
     <div id="notes">
      <ul id="notes-list" class="notes-list">
     <?php
@@ -61,7 +60,7 @@ $_GET['act']='首页';
        ?>
        
         <li class="notes-item">
-          <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'>[<?=$msg['cat'];?>]<a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh">精华</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><span class="jiajing" data-marrow="<?=$msg['id'];?>"><?php if($msg['marrow']=='1'){ ?>取消加精<?php }else{?>加精<?php }?></span><b></b></div>
+          <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'><a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh">精华</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><span class="jiajing" data-marrow="<?=$msg['id'];?>"><?php if($msg['marrow']=='1'){ ?>取消加精<?php }else{?>加精<?php }?></span><b></b></div>
           <div class="notes-content"></div>
           <div class="rt"><a href="show.php?id=<?=$msg['id'];?>" target="_blank" >详细</a><?php if($_GET['admin']==1){?><a class="dele"  data-edit="ajax_show.php?id=<?=$msg['id'];?>">编辑</a><a href="dele.php?id=<?=$msg['id'];?>" data-dele="<?=$msg['id'];?>" class="dele" onclick="return false">删除</a><?php }?></div>
         </li>
@@ -70,7 +69,7 @@ $_GET['act']='首页';
     ?>
     
       </ul>
-      <div class="pagemore"><a data-page='ajax_page.php?page=2'>更多</a></div>
+      <?php if(1>1){?><div class="pagemore"><a data-page='ajax_page.php?page=2'>更多</a></div><?php } ?>
     </div>
 
 </div>
@@ -123,7 +122,7 @@ $_GET['act']='首页';
                             time=d.t_list[i].time,
                             marrow=d.t_list[i].marrow=='1' ? '取消加精' : '加精',
                             marrow2=d.t_list[i].marrow=='1' ? '<span class="jh">精华</span>' : '',
-                            str='<div class="lt" data-show="ajax_show.php?id='+id+'">['+cat+']<a class="cat">'+marrow2+'<strong style="margin-left:5px">'+title+'</strong></a>'+time+'<span class="jiajing" data-marrow="'+id+'">'+marrow+'</span><b></b></div><div class="notes-content"></div><div class="rt"><a href="show.php?id='+id+'" target="_blank" >详细</a><?php if($_GET['admin']){ ?><a class="dele" data-edit="ajax_show.php?id='+id+'">编辑</a><a href="dele.php?id='+id+'" data-dele="'+id+'" class="dele" onclick="return false">删除</a><?php }?>',
+                            str='<div class="lt" data-show="ajax_show.php?id='+id+'"><a class="cat">['+cat+']'+marrow2+'<strong style="margin-left:5px">'+title+'</strong></a>'+time+'<span class="jiajing" data-marrow="'+id+'">'+marrow+'</span><b></b></div><div class="notes-content"></div><div class="rt"><a href="show.php?id='+id+'" target="_blank" >详细</a><?php if($_GET['admin']){ ?><a class="dele" data-edit="ajax_show.php?id='+id+'">编辑</a><a href="dele.php?id='+id+'" data-dele="'+id+'" class="dele" onclick="return false">删除</a><?php }?>',
                             li;
                            DocumentFragment.appendChild(li=document.createElement('li'));
                            li.className='notes-item';
