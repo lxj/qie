@@ -27,13 +27,15 @@
     S.$('cat-loading').style.display='block';
 	S.Ajax(
 		   function(date){
-			var d=S.parseJson(date);
-			   var s='<li class="cat-item"><a href="index.php" '+select+'>首页</a></li>'
-			   for(var i=0,ii=d.cat_list.length;i<ii;i++){
-				 select=cur_cat===d.cat_list[i].cat_name ? 'class="select"' : '';
-			     s+='<li class="cat-item"><a href="cat.php?act='+d.cat_list[i].cat_name+'" '+select+'>'+d.cat_list[i].cat_name+'</a></li>';
-				 select='';
+			var d=S.parseJson(date),s='',mr=[{"cat_name":"首页","cat_slug":"index"},{"cat_name":"精华","cat_slug":"marrow"}],zzData=mr.concat(d.cat_list),sli;
+
+			   for(var i=0,ii=zzData.length;i<ii;i++){
+				  select=cur_cat===zzData[i].cat_name ? 'class="select"' : '';
+				  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+zzData[i].cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+zzData[i].cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+zzData[i].cat_name+'" '+select+'>'+zzData[i].cat_name+'</a></li>'};
+				  s+=(sli[zzData[i].cat_slug] || sli['mr']);
+				  select='';
 			   }
+
 			   S.$('cat-loading').style.display='none';
 			   S.$('cat-list').innerHTML=s;
 		   },

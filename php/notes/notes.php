@@ -50,7 +50,16 @@ class notes
 			header("Location:login.php");
 	}
    function index(){
-			$sql = "select * from note_posts order by id DESC limit 0,15" ;//order by id DESC  表示使内容按照id字段的时间早晚的顺序排列
+			$sql = "select * from `note_posts` order by id DESC limit 0,15" ;
+			$date= array();
+			$query_result = mysql_query($sql) or die("<p>写入数据库失败</p>");
+			while($row = mysql_fetch_assoc($query_result)){
+			 $date[]=$row;
+			}
+			return $date;
+   }
+   function marrow(){
+			$sql = "select * from `note_posts` where `marrow` = '1' order by id DESC limit 0,15" ;
 			$date= array();
 			$query_result = mysql_query($sql) or die("<p>写入数据库失败</p>");
 			while($row = mysql_fetch_assoc($query_result)){
