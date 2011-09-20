@@ -12,19 +12,27 @@
 		oFCKeditor.Create();
 		document.getElementById('chushi').style.display='none'
 	 </script>
-	  <div><label>分类：</label><select name="cat">
-	  <option value="CSS">CSS</option>
-		<option value="HTML">HTML</option>
-	  <option value="CSS3">CSS3</option>
-	  <option value="HTML5">HTML5</option>
-	  <option value="JavaScript">JavaScript</option>
-	  <option value="PHP">PHP</option>
-	  <option value="性能">性能</option>
-		<option value="前端">前端</option>
-	  <option value="FCKeditor">FCKeditor</option>
-	  <option selected="selected" value="随笔">随笔</option>
-	  </select>
-	  </div>
+	  <div id="editor-cat-list"></div>
 	  <div class="form-act"><input type="submit" id="queding" value="提交" class="button"><input type="button" id="quxiao" value="取消" class="button btn-gray" /></div>
   </div>
  </form>
+ <script>
+;(function(S){
+	function createCatSelect(catData){
+			var s='<label>分类：</label><select name="cat">',zzData=catData;
+			   for(var i=0,ii=zzData.length;i<ii;i++){
+				  s+='<option value="'+zzData[i].cat_name+'">'+zzData[i].cat_name+'</option>';
+			   }
+			   s+='</select>';
+			   S.$('editor-cat-list').innerHTML=s;
+	};
+	S.catData ? createCatSelect(S.catData) : S.Ajax(
+		   function(date){
+			    createCatSelect(S.parseJson(date).cat_list);
+				S.catData=S.parseJson(date).cat_list;
+		   },
+		   'cat_list.php',
+		   "get"
+	);
+})(notes)
+</script>
