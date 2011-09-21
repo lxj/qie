@@ -17,11 +17,14 @@
   </div>
  </form>
  <script>
+ var curCat="<?=$_GET['act'];?>",select='';
 ;(function(S){
 	function createCatSelect(catData){
 			var s='<label>∑÷¿‡£∫</label><select name="cat">',zzData=catData;
 			   for(var i=0,ii=zzData.length;i<ii;i++){
-				  s+='<option value="'+zzData[i].cat_name+'">'+zzData[i].cat_name+'</option>';
+				  if(curCat===zzData[i].cat_name){select=" selected='select'"}
+				  s+='<option value="'+zzData[i].cat_name+'"'+select+'>'+zzData[i].cat_name+'</option>';
+				  select='';
 			   }
 			   s+='</select>';
 			   S.$('editor-cat-list').innerHTML=s;
