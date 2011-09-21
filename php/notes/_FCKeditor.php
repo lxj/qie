@@ -1,7 +1,7 @@
 <div style="overflow:hidden;zoom:1"><a href="#" onclick="document.getElementById('fabu').offsetHeight==0 ? document.getElementById('fabu').style.display='block' : document.getElementById('fabu').style.display='none';return false" class="button">发表笔记</a></div>
  <form id="myform" action="recive_add.php" method="post">
   <div id="fabu" class="fabu">
-	  <div><label>标题：</label><input type="text" class="input" value="" name="title" /></div>
+	  <div><label>标题：</label><input type="text" class="input" value="" name="title" /><input type="hidden" class="input" value="0" name="marrow" /></div>
 	  <div id="chushi" style="line-height:200px; text-align:center; font-size:14px">正在初始化编辑器，请稍候.......</div>
 	  <script>
 		var oFCKeditor = new FCKeditor('content');//传入参数为表单元素（由FCKeditor生成的input或textarea）的name

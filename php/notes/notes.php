@@ -69,7 +69,8 @@ class notes
    }
    function cat(){
 	        $cat=$_GET['act'];
-	        $sql = "select * from `note_posts` where `cat` = '".$cat."' ORDER BY `id` DESC " ;
+	        $sql = "select * from `note_posts` where `cat` = '".$cat."' order by `marrow` desc,`id` desc" ;
+			$sql2 = "select * from `note_posts` where `cat` = '".$cat."' order by `marrow` desc " ;
 			$date= array();
 			$query_result = mysql_query($sql) or die("<p>¶ÁÈ¡Êý¾Ý¿âÊ§°Ü</p>");
 			while($row = mysql_fetch_assoc($query_result)){
