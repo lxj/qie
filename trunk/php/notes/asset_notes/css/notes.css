@@ -15,7 +15,7 @@ p{padding-bottom:10px}
 #contenter{margin:10px 20px 0 130px;overflow:hidden;zoom:1;position:relative;padding:10px;background:#f8f8f8;-webkit-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);-moz-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);box-shadow:0 0 2px 2px rgba(0,0,0,0.1);border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
 .con-rt{position:absolute;top:10px;right:10px;font-size:12px}
 
-#notes{padding-bottom:20px}
+#notes{zoom:1}
 
 .crumb{padding-top:20px;font-family:'\5B8B\4F53';}
 
@@ -25,9 +25,9 @@ p{padding-bottom:10px}
 
 .notes-list{overflow:hidden;zoom:1;position:relative}
     .notes-list .notes-content{ border-bottom:2px solid #eee}
-    .notes-list .notes-item{position:relative;zoom:1;font:14px/1.5 Tahoma, Geneva, sans-serif;/*border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;border:1px solid #eee*/; vertical-align:top;/*width:49.9%;float:left*/}
+    .notes-list .notes-item{position:relative;overflow:hidden;zoom:1;margin-top:-1px;font:14px/1.5 Tahoma, Geneva, sans-serif;/*border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;border:1px solid #eee*/; vertical-align:top;/*width:49.9%;float:left*/}
     .notes-list .notes-item .notes-content{padding:10px 20px 20px;display:none;}
-    .notes-list .lt{cursor:pointer;border-bottom:1px solid #eee;line-height:30px;height:30px;overflow:hidden;position:relative;padding-left:12px}
+    .notes-list .lt{cursor:pointer;border-top:1px solid #eee;line-height:30px;height:30px;overflow:hidden;position:relative;padding-left:12px;}
 	.notes-list .lt:hover{background:#DFFFBF}
     .notes-list .lt b{position:absolute;width:4px;height:4px;background:#ccc;overflow:hidden;left:5px;top:50%;margin-top:-2px}
     .notes-list .lt .jh{margin-left:5px; font-weight:bold; color:#f60}
@@ -41,7 +41,7 @@ p{padding-bottom:10px}
 .form-act{text-align:right}
     .form-act input{width:60px; height:28px; margin-left:15px;float:none}
 
-.pagemore{text-align:center;padding:5px 0}
+.pagemore{text-align:center;padding-top:10px}
     .pagemore a{color:#333333;cursor:pointer}
 
 .at-title{font-weight:bold;}
