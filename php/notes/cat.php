@@ -33,32 +33,35 @@ $date=$newNotes ->cat();
 	 <?php include('_FCKeditor.php');?>
     <?php include('_cat_list.php');?>
 
-    <div class="crumb"><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<?=$_GET['act'];?>(<span id="pagegeshu"><?php echo count($date); ?></span>)</div>
-    <div id="notes">
-     <ul id="notes-list" class="notes-list">
-    <?php
-    
-    ##############################################
-    //显示留言列表
-    ##############################################
-       $nub=0;
-       foreach($date as $msg)//循环显示内容
-       {
-        $nub++;
-       ?>
-       
-        <li class="notes-item">
-          <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'><a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh">精华</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><span class="jiajing" data-marrow="<?=$msg['id'];?>"><?php if($msg['marrow']=='1'){ ?>取消加精<?php }else{?>加精<?php }?></span><b></b></div>
-          <div class="notes-content"></div>
-          <div class="rt"><a href="show.php?id=<?=$msg['id'];?>" target="_blank" >详细</a><?php if($_GET['admin']==1){?><a class="dele"  data-edit="ajax_show.php?id=<?=$msg['id'];?>">编辑</a><a href="dele.php?id=<?=$msg['id'];?>" data-dele="<?=$msg['id'];?>" class="dele" onclick="return false">删除</a><?php }?></div>
-        </li>
-       <?	 
-       }
-    ?>
-    
-      </ul>
-      <?php if(1>1){?><div class="pagemore"><a data-page='ajax_page.php?page=2'>更多</a></div><?php } ?>
-    </div>
+	<?php if(count($date)==0){ ?>
+		   <p style="padding-top:15px">没有该分类文章</p>
+	 <?php }else{ ?>
+		<div class="crumb"><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<?=$_GET['act'];?>(<span id="pagegeshu"><?php echo count($date); ?></span>)</div>
+		<div id="notes">
+		 <ul id="notes-list" class="notes-list">
+		<?php
+
+		##############################################
+		//显示留言列表
+		##############################################
+		   $nub=0;
+		   foreach($date as $msg)//循环显示内容
+		   {
+			$nub++;
+		   ?>
+		   
+			<li class="notes-item">
+			  <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'><a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh">精华</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><span class="jiajing" data-marrow="<?=$msg['id'];?>"><?php if($msg['marrow']=='1'){ ?>取消加精<?php }else{?>加精<?php }?></span><b></b></div>
+			  <div class="notes-content"></div>
+			  <div class="rt"><a href="show.php?id=<?=$msg['id'];?>" target="_blank" >详细</a><?php if($_GET['admin']==1){?><a class="dele"  data-edit="ajax_show.php?id=<?=$msg['id'];?>">编辑</a><a href="dele.php?id=<?=$msg['id'];?>" data-dele="<?=$msg['id'];?>" class="dele" onclick="return false">删除</a><?php }?></div>
+			</li>
+		   <?	 
+		   }
+		?>
+		  </ul>
+		  <?php if(1>1){?><div class="pagemore"><a data-page='ajax_page.php?page=2'>更多</a></div><?php } ?>
+		</div>
+	<?php }?>
 
 </div>
 <script type="text/javascript" >
