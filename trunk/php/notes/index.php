@@ -11,22 +11,10 @@ $_GET['act']='Ê×Ò³';
 <script type="text/javascript" src="asset_notes/js/editor/fckeditor/fckeditor.js"></script>
 <!--SyntaxHighlighter-->
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shCore.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushBash.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushCpp.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushCSharp.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushCss.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushDelphi.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushDiff.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushJava.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushJScript.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushPhp.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushPlain.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushPython.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushRuby.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushScala.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushSql.js"></script>
-<script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushVb.js"></script>
 <script type="text/javascript" src="asset_notes/js/editor/syntaxhighlighter/scripts/shBrushXml.js"></script>
 
 <script type="text/javascript" src="asset_notes/js/note_front.js"></script>
