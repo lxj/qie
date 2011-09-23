@@ -1,7 +1,51 @@
-(function(S){
+(function(S,undef){
         if (window[S] === undefined) window[S] = {};
         S = window[S];
         S.$=function(o){return typeof(o)==='string' ? document.getElementById(o) : o};
+        S.ready=function(fn){
+            var self=this;
+            if(!+'\v1'){
+                (function(){
+                    try{
+                        document.documentElement.doScroll('left');
+                    } catch (error){
+                        setTimeout(arguments.callee, 0);
+                        return;
+                    };
+                    fn.call(window,self);
+                })();
+                /*					  try{
+                 document.documentElement.doScroll('left');
+                 } catch (error){
+                 setTimeout(arguments.callee, 0);
+                 return;
+                 };
+                 alert('')
+                 fn.call(window,self);*/
+
+            }else{
+                document.addEventListener('DOMContentLoaded', function(){fn.call(window,self)}, false);
+            }
+        };
+        S.each=function(object, fn, context) {
+            var key, val, i = 0, length = object.length,
+                    isObj = length === undef || Object.prototype.toString.call(object)==='[object Function]';;
+            context = context || window;
+
+            if (isObj) {
+                for (key in object) {
+                    if (fn.call(context, object[key], key, object) === false) {
+                        break;
+                    }
+                }
+            } else {
+                for (val = object[0];
+                     i < length && fn.call(context, val, i, object) !== false; val = object[++i]) {
+                }
+            }
+
+            return object;
+        };
         S.addEvent=function( node, type, listener ) {
             if (node.addEventListener) {
                 node.addEventListener( type, listener, false );

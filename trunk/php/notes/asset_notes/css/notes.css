@@ -9,7 +9,7 @@ a:hover{color:#fa8c00;text-decoration:underline}
 
 h1{color:#333; font:24px/3 "微软雅黑"}
 h2{font:bold 14px/1.5 "宋体";padding:15px 0 5px 0}
-.fabu{padding-top:15px;display:none}
+.fabu{padding-top:15px;}
 .input{width:400px; height:20px; border:1px solid #ddd}
 p{padding-bottom:10px}
 #contenter{margin:10px 20px 0 130px;overflow:hidden;zoom:1;position:relative;padding:10px;background:#f8f8f8;-webkit-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);-moz-box-shadow:0 0 2px 2px rgba(0,0,0,0.1);box-shadow:0 0 2px 2px rgba(0,0,0,0.1);border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
@@ -70,9 +70,13 @@ p{padding-bottom:10px}
     text-shadow:0 1px #276DDD;
     border:1px solid #276DDD;
     border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
     background-color:#4C8FFC;
     background-position:0 -185px;
     box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .button:hover {
     text-decoration:none;
@@ -90,6 +94,8 @@ p{padding-bottom:10px}
     background-color:#FFF;
     background-position:0 -605px;
     box-shadow:0 1px 2px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.1);
 }
 .btn-gray:hover {
     color:#333;
