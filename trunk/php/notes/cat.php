@@ -64,6 +64,6 @@ $date=$newNotes ->cat();
 	<?php }?>
 
 </div>
-<script type="text/javascript" src="asset_notes/js/note_init.js" ></script>
+<script type="text/javascript" src="asset_notes/js/note_init.js" async="true" defer="true" ></script>
 </body>
 </html>

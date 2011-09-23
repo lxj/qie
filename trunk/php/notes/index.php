@@ -67,7 +67,7 @@ $_GET['act']='Ê×Ò³';
    notes.$('notes-list') && (notes.$('notes-list').admin="<?=$_GET['admin'];?>")
 </script>
 <?php } ?>
-<script type="text/javascript" src="asset_notes/js/note_init.js" ></script>
+<script type="text/javascript" src="asset_notes/js/note_init.js" async="true" defer="true" ></script>
 
 </body>
 </html>
