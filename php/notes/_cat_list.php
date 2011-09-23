@@ -1,49 +1,34 @@
 <div id="cat-list-bx" class="cat-list-bx">
    <p id="cat-loading" style="text-align:center">加载中....</p>
-	<ul id="cat-list" class="cat-list">
-	  <?php if(1>1){?>
-		<li class="cat-item"><a href="index.php"<?php if(!$_GET['act']){?> class="select"<?php }?>>首页</a></li>
-		<li class="cat-item"><a href="cat.php?act=CSS"<?php if($_GET['act']=='CSS'){?> class="select"<?php }?>>CSS</a></li>
-		<li class="cat-item"><a href="cat.php?act=HTML"<?php if($_GET['act']=='HTML'){?> class="select"<?php }?>>HTML</a></li>
-		<li class="cat-item"><a href="cat.php?act=CSS3"<?php if($_GET['act']=='CSS3'){?> class="select"<?php }?>>CSS3</a></li>
-		<li class="cat-item"><a href="cat.php?act=HTML5"<?php if($_GET['act']=='HTML5'){?> class="select"<?php }?>>HTML5</a></li>
-		<li class="cat-item"><a href="cat.php?act=JavaScript"<?php if($_GET['act']=='JavaScript'){?> class="select"<?php }?>>JavaScript</a></li>
-		<li class="cat-item"><a href="cat.php?act=PHP"<?php if($_GET['act']=='PHP'){?> class="select"<?php }?>>PHP</a></li>
-		<li class="cat-item"><a href="cat.php?act=性能"<?php if($_GET['act']=='性能'){?> class="select"<?php }?>>性能</a></li>
-		<li class="cat-item"><a href="cat.php?act=前端"<?php if($_GET['act']=='前端'){?> class="select"<?php }?>>前端</a></li>
-		<li class="cat-item"><a href="cat.php?act=SVN"<?php if($_GET['act']=='SVN'){?> class="select"<?php }?>>SVN</a></li>
-		<li class="cat-item"><a href="cat.php?act=FCKeditor"<?php if($_GET['act']=='FCKeditor'){?> class="select"<?php }?>>FCKeditor</a></li>
-		<li class="cat-item"><a href="cat.php?act=随笔"<?php if($_GET['act']=='随笔'){?> class="select"<?php }?>>随笔</a></li> 
-	  <?php } ?>
-	</ul>
+	<ul id="cat-list" class="cat-list"></ul>
 </div>
 <script>
 (function(S){
-	 var cur_cat='首页',select='class="select"',mr=[{"cat_name":"首页","cat_slug":"index"},{"cat_name":"精华","cat_slug":"marrow"}];
+	var cur_cat='首页',select='class="select"',mr=[{"cat_name":"首页","cat_slug":"index"},{"cat_name":"精华","cat_slug":"marrow"}];
 	<?php if($_GET['act']){?>
-      cur_cat="<?=$_GET['act'];?>";
-	  select='';
+	cur_cat="<?=$_GET['act'];?>";
+	select='';
 	<?php }?>
 	function createCatList(catData){
-			var s='',zzData=mr.concat(catData),sli;
-			   for(var i=0,ii=zzData.length;i<ii;i++){
-				  select=cur_cat===zzData[i].cat_name ? 'class="select"' : '';
-				  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+zzData[i].cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+zzData[i].cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+zzData[i].cat_name+'" '+select+'>'+zzData[i].cat_name+'</a></li>'};
-				  s+=(sli[zzData[i].cat_slug] || sli['mr']);
-				  select='';
-			   }
-			   S.$('cat-list').innerHTML=s;
+		var s='',zzData=mr.concat(catData),sli;
+		S.each(zzData,function(val){
+			  select=cur_cat===val.cat_name ? 'class="select"' : '';
+			  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+val.cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+val.cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+val.cat_name+'" '+select+'>'+val.cat_name+'</a></li>'};
+			  s+=(sli[val.cat_slug] || sli['mr']);
+			  select='';
+		})
+		S.$('cat-list').innerHTML=s;
 	}
-    S.$('cat-loading').style.display='block';
+	S.$('cat-loading').style.display='block';
 	S.catData ? createCatList(S.catData) : S.Ajax(
-		   function(date){
-			var d=S.parseJson(date);
-			    S.$('cat-loading').style.display='none';
-			    createCatList(d.cat_list);
-				S.catData=d.cat_list;
-		   },
-		   'cat_list.php',
-		   "get"
+	   function(date){
+		var d=S.parseJson(date);
+			S.$('cat-loading').style.display='none';
+			createCatList(d.cat_list);
+			S.catData=d.cat_list;
+	   },
+	   'cat_list.php',
+	   "get"
 	);
 })(notes)
 </script>
