@@ -75,7 +75,7 @@ input{visibility:visible}
 	/*
 	 *登陆模块
 	 **/
-	var form=S.$('login'),user_name=S.$('user_name'),user_password=S.$('user_password'),submit=S.$('submit'),v=[];
+	var form=S.$('login'),user_name=S.$('user_name'),user_password=S.$('user_password'),submit=S.$('submit'),v=[],v2=[];
 	var tip={
          createTip:function(par,inner,cn){
 			var span=document.createElement('span'),c=cn || 'wrong';
@@ -99,9 +99,9 @@ input{visibility:visible}
     S.addEvent(user_name,'blur',function(){
         if(this.value.replace(/\s/g,'')==''){
 			tip.wrong(this,'用户名不能为空','block');
-			v[0]='wrong';
+			v[this.name]='wrong';
         }else{
-			v[0]='correct';
+			v[this.name]='correct';
         };
 	})
     S.addEvent(user_password,'focus',function(){
@@ -110,9 +110,9 @@ input{visibility:visible}
     S.addEvent(user_password,'blur',function(){
         if(this.value.replace(/\s/g,'')==''){
 			tip.wrong(this,'密码不能为空','block');
-			v[1]='wrong';
+			v[this.name]='wrong';
         }else{
-            v[1]='correct';
+            v[this.name]='correct';
         }
 	})
     S.login=function(submit,user_name,user_password){
@@ -144,17 +144,22 @@ input{visibility:visible}
         var s='';
         if(user_name.value.replace(/\s/g,'')==''){
 			tip.wrong(user_name,'用户名不能为空','block')
-			v[0]='wrong';
+			v[user_name.name]='wrong';
         }else{
-            v[1]='correct';
+            v[user_name.name]='correct';
         };
         if(user_password.value.replace(/\s/g,'')==''){
             tip.wrong(user_password,'密码不能为空','block');
-			v[1]='wrong';
+			v[user_password.name]='wrong';
         }else{
-            v[1]='correct';
+            v[user_password.name]='correct';
         }
-        if(/wrong/.test(v.join(''))) return false;
+
+		for(var key in v){
+		    v2.push(v[key])
+		}
+	    if(/wrong/.test(v2.join(''))) return false;
+
         S.login(submit,user_name,user_password);
         return false
     });
