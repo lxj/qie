@@ -12,6 +12,8 @@
 <html> 
 <head> 
 <meta charset="gbk" /> 
+<link href="asset_notes/css/notes.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="asset_notes/js/note_front.js"></script>
 <title>登录</title>
 <style>
 *{margin:0; padding:0}
@@ -38,18 +40,18 @@ input{visibility:visible}
     border:8px solid #ddd\0;
     font-size:14px;
 }
-.input{width:160px;height:19px;border:1px solid #c5c5c5;padding:3px 4px;outline:none}
-.but,.but-loading{display:block;width:74px;height:27px;border:0;cursor:pointer;background:url(asset_notes/img/denglu.png) no-repeat;text-indent:-9999px}
-.but:hover{background-position:0 -27px}
-.but-loading{background-position:0 -54px}
-
-.form-item{overflow:hidden;zoom:1;line-height:26px;padding-bottom:7px}
-	.form-item .lb,
-	.form-item .input,
-	.form-item .but{float:left;margin-right:5px}
-	.form-item .lb{margin:0;width:60px;text-align:right}
-	
-.form-act{zoom:1;padding:5px 0 0 60px}
+#login .input{width:160px;height:19px;border:1px solid #c5c5c5;padding:3px 4px;outline:none}
+	#login .but,#login .but-loading{display:block;width:74px;height:27px;border:0;cursor:pointer;background:url(asset_notes/img/denglu.png) no-repeat;text-indent:-9999px;margin-left:0}
+	#login .but:hover{background-position:0 -27px}
+	#login .but-loading{background-position:0 -54px}
+	#login .form-item{zoom:1;line-height:26px;padding-bottom:7px;position:relative}
+	#login .form-item:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+	#login .form-item .lb,
+	#login .form-item .input,
+	#login .form-item .but{float:left;margin-right:5px}
+	#login .form-item .lb{margin:0;width:60px;text-align:right}
+	#login .form-act{zoom:1;padding:5px 0 0 60px}
+	#login .wrong{position:absolute;top:3px;left:235px;z-index:10px}
 </style>
 </head>
 
@@ -57,144 +59,62 @@ input{visibility:visible}
 
 <div id="loginBx">
     <form id="login" name="login" method="post" action="index.php">
-        <div class="form-item"><label class="lb">用户名：</label><input type="text" value="" id="user_name" name="user_name" class="input" /></div>
-        <div class="form-item"><label class="lb">密码：</label><input type="password" value="" id="user_password" name="user_password" class="input" /></div>
+        <div class="form-item">
+			<label class="lb">用户名：</label>
+			<input type="text" value="" id="user_name" name="user_name" class="input" />
+		</div>
+        <div class="form-item">
+			<label class="lb">密码：</label>
+			<input type="password" value="" id="user_password" name="user_password" class="input" />
+		</div>
         <div class="form-act"><input type="submit" class="but" value="登录" id="submit"/></div>
     </form>
 </div>
 <script>
-;(function(S){
-    if (window[S] === undefined) window[S] = {};
-    S = window[S];
-    S.$=function(o){return typeof(o)==='string' ? document.getElementById(o) : o};
-    S.addEvent=function( node, type, listener ) {
-        if (node.addEventListener) {
-            node.addEventListener( type, listener, false );
-            return true;
-        } else if(node.attachEvent) {
-            node['e'+type+listener] = listener;
-            node[type+listener] = function(){node['e'+type+listener]( window.event );}
-            node.attachEvent( 'on'+type, node[type+listener] );
-            return true;
-        }
-        return false;
-    };
-    //去掉字符串的空格
-    String.prototype.trim = function(){
-        return this.replace(/(^[\s]*)|([\s]*$)/g, "");
-    }
-    S.getEventTarget=function(e){
-        var e = e || window.event;
-        return e.target || e.srcElement;
-    }
-    S.stopPropagation=function(evt){
-        var evt = evt || window.event;
-        if (evt.stopPropagation) {
-            evt.stopPropagation();
-        }
-        else {
-            evt.cancelBubble = true;
-        }
-    };
-    S.parseJson=function (text) {
-        //extract JSON string
-        var match;
-        if ((match = /\{[\s\S]*\}|\[[\s\S]*\]/.exec(text))) {
-            text = match[0];
-        }
-        var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-        cx.lastIndex = 0;
-        if (cx.test(text)) {
-            text = text.replace(cx, function (a) {
-                return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-            });
-        }
-        if (/^[\],:{}\s]*$/.
-                test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
-                replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-                replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-            return eval('(' + text + ')');
-        }
-        throw 'JSON parse error';
-    };
-    S.preventDefault=function(evt){
-        var evt = evt || window.event;
-        if (evt.preventDefault) {
-            evt.preventDefault();
-        }
-        else {
-            evt.returnValue = false;
-        }
-    };
-    S.toArray=function(source)
-    {
-        var result = [];
-
-        for (var i = 0; i < source.length; i++)
-            result.push(source[i]);
-
-        return result;
-    };
-    S.getECN=function(node, name, type) {
-        var r = [], re = new RegExp("(^|\\s)" + name + "(\\s|$)"), e = (node || document).getElementsByTagName(type || "*");
-        for ( var i = 0,len=e.length; i < len; i++ ) {
-            if(re.test(e[i].className) )
-                r.push(e[i]);
-        }
-        return r;
-    };
-    S.Ajax=function(fn,url,p,send){
-        //创建XMLHttpRequest对象
-        var xmlhttp;
-        try{
-            xmlhttp= new ActiveXObject('Msxml2.XMLHTTP');
-        }catch(e){
-            try{
-                xmlhttp= new ActiveXObject('Microsoft.XMLHTTP');
-            }catch(e){
-                try{
-                    xmlhttp= new XMLHttpRequest();
-                }catch(e){}
-            }
-        }
-        //创建请求结果处理程序
-        xmlhttp.onreadystatechange=function(){
-            if (4==xmlhttp.readyState){
-                if (200==xmlhttp.status){
-                    var date=xmlhttp.responseText;
-                    fn(date)
-                }else{
-                    alert("error");
-                }
-            }
-        }
-        //打开连接，true表示异步提交
-        xmlhttp.open(p, url, true);
-        //当方法为post时需要如下设置http头
-        xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-        //发送数据
-        xmlhttp.send(send);
-    }
-    S.submit=function(elem,fn,under){
-        S.addEvent(elem,'click',function(event){
-            var e=window.event || event,targer=e.srcElement || e.target,type = targer.type;
-            if(targer.nodeName.toLowerCase()==='input' && (type === "submit" || type === "image")){
-                fn.call(this)===false && S.preventDefault(event);
-            }
-        });
-        S.addEvent(elem,'onkeypress',function(){
-            var e=window.event || event,targer=e.srcElement || e.target,type = targer.type;
-            if(targer.nodeName.toLowerCase()==='input' && (type === "text" || type === "password") && e.keyCode === 13){
-                fn.call(this)===false && S.preventDefault(event);
-            }
-        });
-    };
-})('notes');
-
 (function(S){
 	/*
 	 *登陆模块
 	 **/
+	var form=S.$('login'),user_name=S.$('user_name'),user_password=S.$('user_password'),submit=S.$('submit'),v=[];
+	var tip={
+         createTip:function(par,inner,cn){
+			var span=document.createElement('span'),c=cn || 'wrong';
+			span.className=c;
+			span.innerHTML=inner+'<b></b>';
+			par.appendChild(span);
+			return span;
+		 },
+         wrong:function(o,inner,sh){
+            if(!o.wrong){
+				o.wrong=this.createTip(o.parentNode,'用户名不能为空');
+			}
+			o.wrong.innerHTML=inner+'<b></b>'
+			o.wrong.style.display=sh;
+			return o.wrong;
+		 }
+	}
+    S.addEvent(user_name,'focus',function(){
+		this.wrong && (this.wrong.offsetHeight!==0) && (this.wrong.style.display='none');
+	})
+    S.addEvent(user_name,'blur',function(){
+        if(this.value.replace(/\s/g,'')==''){
+			tip.wrong(this,'用户名不能为空','block');
+			v[0]='wrong';
+        }else{
+			v[0]='correct';
+        };
+	})
+    S.addEvent(user_password,'focus',function(){
+		this.wrong && (this.wrong.offsetHeight!==0) && (this.wrong.style.display='none');
+	})
+    S.addEvent(user_password,'blur',function(){
+        if(this.value.replace(/\s/g,'')==''){
+			tip.wrong(this,'密码不能为空','block');
+			v[1]='wrong';
+        }else{
+            v[1]='correct';
+        }
+	})
     S.login=function(submit,user_name,user_password){
         submit.className='but-loading';
         if(!submit.ajax){
@@ -202,13 +122,13 @@ input{visibility:visible}
                     function(date){
                         var d=S.parseJson(date);
                         if(d.user && d.user==='error'){
-                            alert('用户名不存在');
+							tip.wrong(user_name,'用户名不存在','block');
 							submit.className='but';
                         }
                         if(d.password && d.password==='correct'){
                             location.href='index.php';
                         }else{
-                            d.user==='correct' && alert('密码错误');
+                            (d.user==='correct') && tip.wrong(user_password,'密码错误','block');
 							submit.className='but';
                         }
                         submit.ajax=0;
@@ -220,23 +140,29 @@ input{visibility:visible}
             submit.ajax=1;
         }
     };
-    S.submit(S.$('login'),function(){
-        var form=S.$('login'),user_name=S.$('user_name'),user_password=S.$('user_password'),submit=S.$('submit'),v=[],s='';
+    S.submit(form,function(){
+        var s='';
         if(user_name.value.replace(/\s/g,'')==''){
-            s+='用户名不能为空\n';
+			tip.wrong(user_name,'用户名不能为空','block')
+			v[0]='wrong';
         }else{
-            v.push(user_name);
+            v[1]='correct';
         };
         if(user_password.value.replace(/\s/g,'')==''){
-            s+='密码不能为空\n';
+            tip.wrong(user_password,'密码不能为空','block');
+			v[1]='wrong';
         }else{
-            v.push(user_password);
+            v[1]='correct';
         }
-        if(s) alert(s);
-        if(v.length!=2) return false;
+        if(/wrong/.test(v.join(''))) return false;
         S.login(submit,user_name,user_password);
         return false
-    })
+    });
+	var lxj=[];
+	lxj['we']='qqq';
+	lxj['we2']='qqq2';
+	lxj['we3']='qqq3';
+	lxj['we4']='qqq4';
 })(notes);
 </script>
 
