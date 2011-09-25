@@ -207,5 +207,19 @@
             xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
             //·¢ËÍÊý¾Ý
             xmlhttp.send(send);
-        }
+        };
+		S.submit=function(elem,fn,under){
+			S.addEvent(elem,'click',function(event){
+				var e=window.event || event,targer=e.srcElement || e.target,type = targer.type;
+				if(targer.nodeName.toLowerCase()==='input' && (type === "submit" || type === "image")){
+					fn.call(this)===false && S.preventDefault(event);
+				}
+			});
+			S.addEvent(elem,'onkeypress',function(){
+				var e=window.event || event,targer=e.srcElement || e.target,type = targer.type;
+				if(targer.nodeName.toLowerCase()==='input' && (type === "text" || type === "password") && e.keyCode === 13){
+					fn.call(this)===false && S.preventDefault(event);
+				}
+			});
+		};
 })('notes');
