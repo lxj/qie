@@ -179,3 +179,39 @@ p{padding-bottom:10px}
 	margin-top:-7px;
 	background-position:-78px -158px;
 }
+
+
+
+#loginBx {
+    position:fixed;
+    _position:absolute;
+    top:50%;left:50%;
+    width:240px;
+    margin:-92px 0 0 -143px;
+    background-color: white;
+    padding:15px;
+    /* 关键代码部分 */
+    -moz-background-clip:padding;     /* Firefox 3.6 */
+    -webkit-background-clip:padding;  /* Safari 4? Chrome 6? */
+    background-clip:padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+    border:8px solid rgba(0,0,0,0.3);
+
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius: 8px;
+    *border:8px solid #ddd;
+    border:8px solid #ddd\0;
+    font-size:14px;
+}
+#login .input{width:160px;height:19px;border:1px solid #c5c5c5;padding:3px 4px;outline:none}
+	#login .but,#login .but-loading{display:block;width:74px;height:27px;border:0;cursor:pointer;background:url(../img/denglu.png) no-repeat;text-indent:-9999px;margin-left:0}
+	#login .but:hover{background-position:0 -27px}
+	#login .but-loading{background-position:0 -54px}
+	#login .form-item{zoom:1;line-height:26px;padding-bottom:7px;position:relative}
+	#login .form-item:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+	#login .form-item .lb,
+	#login .form-item .input,
+	#login .form-item .but{float:left;margin-right:5px}
+	#login .form-item .lb{margin:0;width:60px;text-align:right}
+	#login .form-act{zoom:1;padding:5px 0 0 60px;text-align:left}
+	#login .wrong{position:absolute;top:3px;left:235px;z-index:10px}
