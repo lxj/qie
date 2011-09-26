@@ -215,7 +215,7 @@
 					fn.call(this)===false && S.preventDefault(event);
 				}
 			});
-			S.addEvent(elem,'onkeypress',function(){
+			S.addEvent(elem,'onkeypress',function(event){
 				var e=window.event || event,targer=e.srcElement || e.target,type = targer.type;
 				if(targer.nodeName.toLowerCase()==='input' && (type === "text" || type === "password") && e.keyCode === 13){
 					fn.call(this)===false && S.preventDefault(event);
