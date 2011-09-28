@@ -45,7 +45,7 @@
                             title=va.title,
                             time=va.time,
                             marrow=va.marrow=='1' ? '取消加精' : '加精',
-                            marrow2=va.marrow=='1' ? '<span class="jh">精华</span>' : '',str,
+                            marrow2=va.marrow=='1' ? '<span class="jh">精华</span>' : '<span class="jh jh2">加精华</span>',str,
                             li;
 							if(notes_list.admin) admin='<a class="dele" data-edit="ajax_show.php?id='+id+'">编辑</a><a href="dele.php?id='+id+'" data-dele="'+id+'" class="dele" onclick="return false">删除</a>';
                             str='<div class="lt" data-show="ajax_show.php?id='+id+'">['+cat+']<a class="cat">'+marrow2+'<strong style="margin-left:5px">'+title+'</strong></a>'+time+'<span class="jiajing" data-marrow="'+id+'">'+marrow+'</span><b></b></div><div class="notes-content"></div><div class="rt"><a href="show.php?id='+id+'" target="_blank" >详细</a>'+admin+'</div>',
@@ -81,22 +81,14 @@
             );
         };
         S.ajax_marrow=function(o){
-            var _this=o,z=o.innerHTML=='加精' ? '1' : '0';
+            var _this=o,pd=/jh2/.test(o.className);z=pd ? '1' : '0';
             S.Ajax(
                 function(date){
-                   var d=S.parseJson(date),jh;
+                   var d=S.parseJson(date);
                    if(d.retCode=='1096'){
-                       var jh=S.getECN(_this.parentNode,'jh','span')[0],cat=S.getECN(_this.parentNode,'cat','a')[0];
-                       if(o.innerHTML=='取消加精'){
-                          jh.parentNode.removeChild(jh)
-                       }
-                       if(o.innerHTML=='加精'){
-                           var span=document.createElement('span');
-                           cat.insertBefore(span,cat.getElementsByTagName('strong')[0])
-                           span.innerHTML='精华';
-                           span.className='jh';
-                       }
-                       o.innerHTML=o.innerHTML=='加精' ? '取消加精' : '加精';
+					   o.className=pd ? 'jh' : 'jh jh2';
+                       o.innerHTML=pd ? '取消加星' : '加星';
+					   o.title=pd ? '取消加星' : '加星';
                    };
                 },
                 'ajax_marrow.php?id='+o.getAttribute('data-marrow'),

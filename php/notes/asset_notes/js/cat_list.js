@@ -8,7 +8,7 @@
 		var s='',zzData=mr.concat(catData),sli;
 		S.each(zzData,function(val){
 			  select=cur_cat===val.cat_name ? 'class="select"' : '';
-			  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+val.cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+val.cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+val.cat_name+'" '+select+'>'+val.cat_name+'</a></li>'};
+			  sli={'index':'<li class="cat-item"><a href="index.php" '+select+'>'+val.cat_name+'</a></li>','marrow':'<li class="cat-item"><a href="marrow.php" '+select+'>'+val.cat_name+'</a></li>','mr':'<li class="cat-item"><a href="cat.php?act='+val.cat_name+'" '+select+'>'+val.cat_name+'</a><span class="count">('+val.count+')</span></li>'};
 			  s+=(sli[val.cat_slug] || sli['mr']);
 			  select='';
 		})
