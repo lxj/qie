@@ -59,7 +59,7 @@
 					var s='<label>∑÷¿‡£∫</label><select name="cat">',zzData=catData;
 					   S.each(zzData,function(val){
 						  if(curCat===val.cat_name){select=" selected='select'"}
-						  s+='<option value="'+val.cat_name+'"'+select+'>'+val.cat_name+'</option>';
+						  s+='<option value="'+val.cat_id+'"'+select+'>'+val.cat_name+'</option>';
 						  select='';
 					   })
 					   s+='</select>';
