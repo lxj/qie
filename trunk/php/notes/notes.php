@@ -86,6 +86,11 @@ class notes
 			while($row = mysql_fetch_assoc($query_result)){
 			 $date[]=$row;
 			}
+			//$keyer = array_search('1', $date); 
+			//echo $keyer;
+			//echo "<pre>";
+			//print_r($date);
+			//echo "</pre>";
 			include 'json/response.php';
 			$result = array();
 			$result['cat_count'] = count($date);
