@@ -3,10 +3,23 @@ include ('host-config.php');
 mysql_select_db("notes");
 mysql_query("set names gb2312;");
 include ('cookie.php');
-$newNotes=new notes();
 
+function cat_list(){
+		$sql = "select * from note_cats order by cat_sort ASC" ;
+		$date= array();
+		$AJ_RET_SUCC=1096;
+		$query_result = mysql_query($sql) or $AJ_RET_SUCC=1000;
+		while($row = mysql_fetch_assoc($query_result)){
+		 $date[$row['cat_id']]=$row;
+		}
+	   return $date;
+};
+
+$catid=cat_list();
+
+$newNotes=new notes();
 class notes
-{
+{   
 	function login(){
 	  //sleep(30);
 	  $AJ_RET_SUCC=1096;
@@ -84,13 +97,12 @@ class notes
 			$AJ_RET_SUCC=1096;
 			$query_result = mysql_query($sql) or $AJ_RET_SUCC=1000;
 			while($row = mysql_fetch_assoc($query_result)){
-			 $date[]=$row;
+			 if($_GET['type']==2){
+				 $date[$row['cat_id']]=$row;
+			 }else{
+				 $date[]=$row;
+			 }
 			}
-			//$keyer = array_search('1', $date); 
-			//echo $keyer;
-			//echo "<pre>";
-			//print_r($date);
-			//echo "</pre>";
 			include 'json/response.php';
 			$result = array();
 			$result['cat_count'] = count($date);

@@ -49,7 +49,7 @@ $_GET['act']='首页';
        ?>
        
         <li class="notes-item">
-          <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'>[<?=$msg['cat'];?>]<a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh" data-marrow="<?=$msg['id'];?>" title="取消加星">取消加星</span><?php }else{?><span class="jh jh2" data-marrow="<?=$msg['id'];?>" title="加星">加星</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><b></b></div>
+          <div class="lt" data-show='ajax_show.php?id=<?=$msg['id'];?>'>[<?=$catid[$msg['cat']]['cat_name'];?>]<a class="cat"><?php if($msg['marrow']=='1'){ ?><span class="jh" data-marrow="<?=$msg['id'];?>" title="取消加星">取消加星</span><?php }else{?><span class="jh jh2" data-marrow="<?=$msg['id'];?>" title="加星">加星</span><?php }?><?php if($msg['title']){ ?><strong style="margin-left:5px"><?=$msg['title'];?></strong><?php }?></a><?=$msg['time'];?><b></b></div>
           <div class="notes-content"></div>
           <div class="rt"><a href="show.php?id=<?=$msg['id'];?>" target="_blank" >详细</a><?php if($_GET['admin']==1){?><a class="dele"  data-edit="ajax_show.php?id=<?=$msg['id'];?>">编辑</a><a href="dele.php?id=<?=$msg['id'];?>" data-dele="<?=$msg['id'];?>" class="dele" onclick="return false">删除</a><?php }?></div>
         </li>

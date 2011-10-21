@@ -33,7 +33,7 @@ $_GET['act']=$dText['cat'];
 <div id="contenter">
      <div class="con-rt"><span style="margin-right:15px"><?php echo $_COOKIE['user_name'];?></span><?php if(!$_GET['admin']){ ?><a href="index.php?admin=1" class="admin">管理</a><?php }?><a href="logout.php" style="margin-left:15px">退出</a></div>
 
-	<div class="crumb"><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="cat.php?act=<?=$dText['cat'];?>"><?=$dText['cat'];?></a>&nbsp;&gt;&nbsp;<?=$dText['title'];?></div>
+	<div class="crumb"><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="cat.php?act=<?=$dText['cat'];?>"><?=$catid[$dText['cat']]['cat_name'];?></a>&nbsp;&gt;&nbsp;<?=$dText['title'];?></div>
 
 <?php include('_cat_list.php');?>
 
