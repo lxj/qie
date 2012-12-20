@@ -9,7 +9,19 @@ echo *****************************
 
 echo "%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%"
 
-set filename="notes%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%.sql"
+set year=%date:~0,4%
+
+set mouth=%date:~5,2%
+
+set date=%date:~8,2%
+
+set hour=%time:~0,2%
+
+set minute=%time:~3,2%
+
+set second=%time:~6,2%
+
+set filename="notes%year%%mouth%%date%.sql"
 
 echo %filename%
 
