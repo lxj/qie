@@ -74,8 +74,8 @@
 				   "get"
 			);
 	 };
-	 	 	   
-     S.addEvent(fabu_button,'click',function(e){
+	 
+	 fabu_button.clickFun = function(){
          new_post_form.offsetHeight==0 ? new_post_form.style.display='block' : new_post_form.style.display='none';
 		 if(!new_post_form.Editor){
 			 initPostForm();
@@ -83,6 +83,11 @@
 			 initEditorSelect();
 			 new_post_form.Editor=1;
 		 };
-		 S.preventDefault(e);
+	 }
+	 fabu_button.clickFun();
+	 new_post_form.style.display='none';
+     S.addEvent(fabu_button,'click',function(e){
+		this.clickFun();
+		S.preventDefault(e);
 	 })
  })(notes)

@@ -23,6 +23,7 @@ $_GET['act']='Ê×Ò³';
 <script type="text/javascript">
   SyntaxHighlighter.config.clipboardSwf = 'asset_notes/js/editor/syntaxhighlighter/scripts/clipboard.swf';
   SyntaxHighlighter.all();
+  //<?php echo $newNotes ->cat_list("array");?>
 </script>
 <title>SeanLou'notes</title>
 </head>
