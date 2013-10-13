@@ -91,23 +91,28 @@ class notes
 			}
 			return $date;
    }
-   function cat_list(){
+   function cat_list($type="json"){
 	        $sql = "select * from note_cats order by cat_sort ASC" ;
-			$date= array();
+			$data= array();
 			$AJ_RET_SUCC=1096;
 			$query_result = mysql_query($sql) or $AJ_RET_SUCC=1000;
 			while($row = mysql_fetch_assoc($query_result)){
 			 if($_GET['type']==2){
-				 $date[$row['cat_id']]=$row;
+				 $data[$row['cat_id']]=$row;
 			 }else{
-				 $date[]=$row;
+				 $data[]=$row;
 			 }
 			}
-			include 'json/response.php';
-			$result = array();
-			$result['cat_count'] = count($date);
-			$result['cat_list'] = $date;
-			echo Response::HTML($AJ_RET_SUCC, $result);
+			if($type=="json"){
+				include 'json/response.php';
+				$result = array();
+				$result['cat_count'] = count($data);
+				$result['cat_list'] = $data;
+				echo Response::HTML($AJ_RET_SUCC, $result);
+			}else{
+				return $data;
+			}
+
    }
    function ajax_page(){
 	        $AJ_RET_SUCC=1096;
@@ -161,7 +166,7 @@ class notes
 		  $content=$_POST['content'];
 		  $cat=$_POST['cat'];
 		  $id=$_GET['id'];
-		  $sql="update `note_posts` set title = '".$title."',content = '".$content."',cat = '".$cat."',`time` = '".$time."' where `note_posts`.`id` =".$id." LIMIT 1;";
+		  $sql="update `note_posts` set title = '".$title."',content = '".$content."',cat = '".$cat."',`time` = '".$time."' where `note_posts`.`id` =".$id." LIMIT 1";
 		  $query = mysql_query($sql) or $result='fail'; //查询记录数
 		  if($result!=='fail'){
 			$ok="<div class='OK'><p><img src='asset_notes/img/apply.gif' alt=''>更新成功！<a href=\"index.php?admin=1\" class=\"back\">返回</a>";

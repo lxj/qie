@@ -18,7 +18,7 @@
         S.myform=document.forms['myform'];
         S.edit=function(o){
             var _this=o;
-            S.$('fabu').style.display='block';
+			S.$('fabu-button').clickFun();
             S.Ajax(
                    function(date){
                     var d=S.parseJson(date);
