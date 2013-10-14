@@ -135,8 +135,8 @@ class notes
    }
    
    function insert(){
-		   $title = $_POST['title'];
-		   $content = $_POST['content'];
+		   $title = addslashes($_POST['title']);
+		   $content = addslashes($_POST['content']);
 		   $cat = $_POST['cat'];
 		   $marrow = $_POST['marrow'];
 		   date_default_timezone_set(PRC);
@@ -162,8 +162,8 @@ class notes
 		  ######################### 
 		  date_default_timezone_set(PRC);
 		  $time=date("Y-m-d G:i:s");
-		  $title = $_POST['title'];
-		  $content=$_POST['content'];
+		  $title = addslashes($_POST['title']);
+		  $content = addslashes($_POST['content']);
 		  $cat=$_POST['cat'];
 		  $id=$_GET['id'];
 		  $sql="update `note_posts` set title = '".$title."',content = '".$content."',cat = '".$cat."',`time` = '".$time."' where `note_posts`.`id` =".$id." LIMIT 1";
