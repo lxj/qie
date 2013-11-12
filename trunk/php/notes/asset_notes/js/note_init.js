@@ -41,7 +41,7 @@
                         var d=S.parseJson(date),DocumentFragment=document.createDocumentFragment();
 						S.each(d.t_list,function(va){
                             var id=va.id,
-                            cat=va.cat,
+                            cat=getCatInfoById(va.cat).cat_name,
                             title=va.title,
                             time=va.time,
                             marrow=va.marrow=='1' ? '取消加精' : '加精',
