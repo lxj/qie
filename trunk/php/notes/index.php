@@ -23,7 +23,20 @@ $_GET['act']='Ê×Ò³';
 <script type="text/javascript">
   SyntaxHighlighter.config.clipboardSwf = 'asset_notes/js/editor/syntaxhighlighter/scripts/clipboard.swf';
   SyntaxHighlighter.all();
-  //<?php echo $newNotes ->cat_list("array");?>
+  var CAT=<?php echo json_encode($newNotes ->cat_list("array"));?>;
+  function getCatInfoById(catId){
+        var curCat=null;
+        if(catId){
+            for(var i=0,len = CAT.length;i<len;i++){
+                if(catId==CAT[i].cat_id){
+                    curCat = CAT[i];
+                    break;
+                }
+            }
+        }
+        return curCat
+  }
+   // console.log(getCatInfoById(9))
 </script>
 <title>SeanLou'notes</title>
 </head>
